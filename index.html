@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vishal Balasubramanian, AI Engineer</title>
+<meta name="description" content="AI/Data Engineer in Dublin building AI agents, RAG systems and LLM pipelines that run in production. M.Sc. Artificial Intelligence, Dublin City University.">
+<meta name="theme-color" content="#2447E8">
+<meta property="og:title" content="Vishal Balasubramanian, AI Engineer">
+<meta property="og:description" content="AI agents, RAG systems and LLM pipelines, shipped to production.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232447E8'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-size='30' font-weight='700' text-anchor='middle' fill='white'%3EVB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #EDF0F4;
+    --surface: #FFFFFF;
+    --ink: #141B26;
+    --muted: #556072;
+    --line: #D5DBE4;
+    --accent: #2447E8;
+    --accent-ink: #FFFFFF;
+    --accent-tint: #E4E9FD;
+    --ok: #0A6B42;
+    --ok-tint: #DDF3E8;
+    --warn: #9A4A06;
+    --warn-tint: #FBEBD6;
+    --ui: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0E131A;
+      --surface: #161D27;
+      --ink: #E9EDF3;
+      --muted: #9BA7B8;
+      --line: #2A3441;
+      --accent: #8AA2FF;
+      --accent-ink: #0E131A;
+      --accent-tint: #1B2543;
+      --ok: #5FD7A4;
+      --ok-tint: #12302A;
+      --warn: #F2B35E;
+      --warn-tint: #3A2A12;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .wrap { width: min(1120px, 100% - 40px); margin-inline: auto; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; border-radius: 8px; z-index: 10; }
+  .skip:focus { left: 8px; }
+
+  /* Header */
+  .site-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 0; }
+  .brand { font: 700 1.05rem var(--ui); color: var(--ink); text-decoration: none; }
+  .site-nav { display: flex; gap: 22px; font: 500 .95rem var(--ui); }
+  .site-nav a { color: var(--muted); text-decoration: none; }
+  .site-nav a:hover { color: var(--accent); }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 56px; align-items: center; padding: 48px 0 56px; }
+  .status { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 22px; font: 500 .95rem var(--ui); color: var(--muted); }
+  .status::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px var(--ok-tint); }
+  h1 { margin: 0 0 24px; font: 700 clamp(2.1rem, 5.2vw, 3.9rem)/1.02 var(--ui); letter-spacing: -.025em; }
+  h1 span { display: block; }
+  .pitch { margin: 0 0 14px; font-size: clamp(1.2rem, 2.2vw, 1.45rem); line-height: 1.45; }
+  .intro { margin: 0 0 30px; color: var(--muted); max-width: 52ch; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; padding: 11px 22px; border: 2px solid var(--accent); border-radius: 999px; font: 600 .95rem var(--ui); text-decoration: none; }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { filter: brightness(1.1); }
+  .btn-quiet { background: transparent; color: var(--accent); }
+  .btn-quiet:hover { background: var(--accent-tint); }
+
+  /* Booking-agent demo */
+  .agent { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; box-shadow: 0 1px 2px rgba(20,27,38,.05), 0 18px 40px -20px rgba(20,27,38,.25); }
+  .agent h2 { margin: 0 0 4px; font: 600 1.15rem/1.3 var(--ui); }
+  .agent .hint { margin: 0 0 16px; color: var(--muted); font-size: .95rem; line-height: 1.5; }
+  .agent fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+  .opts { display: grid; gap: 8px; }
+  .opt { position: relative; }
+  .opt input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .opt label { display: block; padding: 11px 14px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--surface); cursor: pointer; font: 500 .97rem/1.4 var(--ui); }
+  .opt label:hover { border-color: var(--accent); }
+  .opt input:checked + label { border-color: var(--accent); background: var(--accent-tint); }
+  .opt input:focus-visible + label { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .control { margin: 20px 0 6px; }
+  .control label { display: flex; justify-content: space-between; margin-bottom: 8px; font: 600 .92rem var(--ui); }
+  .control input[type="range"] { width: 100%; accent-color: var(--accent); }
+  .meter { position: relative; height: 12px; margin: 22px 0 8px; border-radius: 999px; background: var(--line); }
+  .fill { height: 100%; border-radius: 999px; background: var(--ok); transition: width .35s ease, background-color .2s; }
+  .fill[data-state="warn"] { background: var(--warn); }
+  .marker { position: absolute; top: -6px; bottom: -6px; width: 3px; margin-left: -1.5px; border-radius: 2px; background: var(--ink); transition: left .2s ease; }
+  .meter-labels { display: flex; justify-content: space-between; font: 500 .85rem var(--ui); color: var(--muted); }
+  .result { margin-top: 16px; padding: 14px 16px; border-radius: 12px; background: var(--ok-tint); }
+  .result-title { margin: 0; font: 700 1rem var(--ui); color: var(--ok); }
+  .result p { margin: 4px 0 0; font-size: .95rem; line-height: 1.5; }
+  .result .reason { color: var(--muted); }
+  .result[data-state="warn"] { background: var(--warn-tint); }
+  .result[data-state="warn"] .result-title { color: var(--warn); }
+  .note { margin: 14px 0 0; font: 400 .82rem var(--ui); color: var(--muted); }
+
+  /* Sections */
+  .section { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 20px 56px; padding: 64px 0; }
+  .section > h2 { margin: 0; font: 600 1.3rem/1.2 var(--ui); letter-spacing: -.005em; }
+  .lead { margin: 0 0 20px; font-size: clamp(1.25rem, 2.4vw, 1.6rem); line-height: 1.4; max-width: 34ch; }
+  .plain { margin: 0 0 22px; max-width: 62ch; }
+  .marks { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; max-width: 62ch; }
+  .marks li { position: relative; padding-left: 24px; }
+  .marks li::before { content: ""; position: absolute; left: 0; top: .6em; width: 9px; height: 9px; border-radius: 2px; background: var(--accent); }
+
+  /* Projects */
+  .project-main { padding: 28px; border-radius: 16px; background: var(--accent-tint); margin-bottom: 44px; }
+  .project-side { padding-left: 28px; }
+  .project h3 { margin: 0; font: 600 1.35rem/1.25 var(--ui); }
+  .project .for { margin: 4px 0 14px; font: 500 .95rem var(--ui); color: var(--muted); }
+  .project p { margin: 0 0 12px; max-width: 62ch; }
+  .project ul { margin: 0 0 14px; padding-left: 20px; }
+  .project li { margin-bottom: 4px; }
+  .built { margin: 0; font: 500 .92rem/1.5 var(--ui); color: var(--muted); }
+  .badge { display: inline-block; margin-left: 10px; padding: 2px 10px; border-radius: 999px; background: var(--warn-tint); color: var(--warn); font: 600 .78rem var(--ui); vertical-align: middle; }
+
+  /* Experience */
+  .timeline { list-style: none; margin: 0; padding: 0; }
+  .timeline > li { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 0 32px; padding-bottom: 40px; }
+  .timeline > li:last-child { padding-bottom: 0; }
+  .when { padding-top: 3px; font: 500 .95rem var(--ui); color: var(--muted); font-variant-numeric: tabular-nums; }
+  .what { position: relative; padding-left: 28px; border-left: 2px solid var(--line); }
+  .timeline > li:last-child .what { border-left-color: transparent; }
+  .what::before { content: ""; position: absolute; left: -7px; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--bg); }
+  .what h3 { margin: 0; font: 600 1.2rem/1.3 var(--ui); }
+  .what .sub { margin: 2px 0 0; font: 500 .92rem var(--ui); color: var(--muted); }
+  .what ul { margin: 12px 0 0; padding-left: 20px; max-width: 64ch; }
+  .what li { margin-bottom: 6px; }
+
+  /* Skills */
+  .stack { margin: 0; display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 16px 24px; }
+  .stack dt { font: 600 1rem var(--ui); }
+  .stack dd { margin: 0; color: var(--muted); }
+
+  /* Education */
+  .quals { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
+  .quals strong { display: block; font: 600 1.05rem/1.35 var(--ui); }
+  .quals span { color: var(--muted); font-size: .98rem; }
+
+  /* Contact */
+  .contact-line { margin: 0 0 18px; max-width: 40ch; font-size: clamp(1.2rem, 2.2vw, 1.45rem); line-height: 1.45; }
+  .email { display: inline-block; margin-bottom: 22px; font: 700 clamp(1.3rem, 3.6vw, 2.2rem)/1.2 var(--ui); letter-spacing: -.01em; overflow-wrap: anywhere; }
+  .where { margin: 22px 0 0; color: var(--muted); }
+
+  .site-footer { padding: 24px 0 56px; color: var(--muted); font: 400 .9rem var(--ui); }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-top: 24px; }
+    .section { grid-template-columns: minmax(0, 1fr); gap: 20px; padding: 48px 0; }
+    .project-side { padding-left: 0; }
+  }
+  @media (max-width: 640px) {
+    .site-nav { gap: 16px; }
+    .timeline > li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+    .when { padding-left: 30px; }
+    .stack { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+    .stack dd { margin-bottom: 14px; }
+    .agent { padding: 18px; }
+    .project-main { padding: 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fill, .marker { transition: none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#about">Skip to content</a>
+
+<div class="wrap">
+  <header class="site-header">
+    <a class="brand" href="#top">Vishal Balasubramanian</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top">
+    <div>
+      <p class="status">Open to roles and freelance projects</p>
+      <h1><span>Vishal</span> <span>Balasubramanian</span></h1>
+      <p class="pitch">I build AI agents, RAG systems and LLM pipelines, and I ship them to production.</p>
+      <p class="intro">AI/Data Engineer with 4+ years of experience and an M.Sc. in Artificial Intelligence from Dublin City University. Based in Dublin, open to remote.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="mailto:vishal188970@gmail.com">Email me</a>
+        <a class="btn btn-quiet" href="https://www.linkedin.com/in/vishalbalasubramanian">LinkedIn</a>
+        <a class="btn btn-quiet" href="https://github.com/VishalBalasubramanian-123">GitHub</a>
+      </div>
+    </div>
+
+    <form class="agent" id="router" aria-labelledby="agent-title" onsubmit="return false">
+      <h2 id="agent-title">How my booking agent decides</h2>
+      <p class="hint">Pick a customer message and move the threshold. Above it, the agent acts. Below it, the owner decides.</p>
+
+      <fieldset>
+        <legend class="sr-only">Customer message</legend>
+        <div class="opts">
+          <div class="opt">
+            <input type="radio" name="msg" id="m1" value="1" data-conf="96" data-stakes="false" data-act="Books the table and sends a confirmation." checked>
+            <label for="m1">&ldquo;Table for two tomorrow at 7pm&rdquo;</label>
+          </div>
+          <div class="opt">
+            <input type="radio" name="msg" id="m2" value="2" data-conf="82" data-stakes="false" data-act="Checks availability and moves the booking.">
+            <label for="m2">&ldquo;Can we move Saturday&rsquo;s booking to Sunday?&rdquo;</label>
+          </div>
+          <div class="opt">
+            <input type="radio" name="msg" id="m3" value="3" data-conf="54" data-stakes="false" data-act="Replies with options and takes the booking.">
+            <label for="m3">&ldquo;Our group of 40 wants the whole terrace&rdquo;</label>
+          </div>
+          <div class="opt">
+            <input type="radio" name="msg" id="m4" value="4" data-conf="91" data-stakes="true" data-act="">
+            <label for="m4">&ldquo;I was charged twice and want a refund&rdquo;</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="control">
+        <label for="threshold"><span>Confidence threshold</span> <output id="threshold-out" for="threshold">75%</output></label>
+        <input type="range" id="threshold" name="threshold" min="50" max="100" step="1" value="75">
+      </div>
+
+      <div class="meter" aria-hidden="true">
+        <div class="fill" id="fill" data-state="ok" style="width:96%"></div>
+        <div class="marker" id="marker" style="left:75%"></div>
+      </div>
+      <div class="meter-labels" aria-hidden="true">
+        <span>Confidence <strong id="conf-text">96%</strong></span>
+        <span>Threshold <strong id="thr-text">75%</strong></span>
+      </div>
+
+      <div class="result" id="result" data-state="ok" aria-live="polite" aria-atomic="true">
+        <p class="result-title" id="result-title">The agent handles it</p>
+        <p id="result-detail">Books the table and sends a confirmation.</p>
+        <p class="reason" id="result-reason">Confidence is at or above the threshold, so the agent acts.</p>
+      </div>
+      <p class="note">An illustration of the idea, with made-up numbers.</p>
+    </form>
+  </section>
+
+  <main>
+    <section class="section" id="about">
+      <h2>About</h2>
+      <div>
+        <p class="lead">I like owning a problem from an incomplete spec to something real people use.</p>
+        <p class="plain">I build on top of LLMs: AI orchestration, RAG, agents and tool use. My foundation is data engineering, with ETL, SQL and data validation from my time at CGI.</p>
+        <ul class="marks">
+          <li>Built an AI agent that acts autonomously with real tool use</li>
+          <li>Built a custom MCP server that automates a client&rsquo;s content workflow</li>
+          <li>Built RAG systems on fintech data and vector-search recommendation engines</li>
+          <li>Built SQL ETL pipelines that serve 100+ downstream applications</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <h2>Projects</h2>
+      <div>
+        <article class="project project-main">
+          <h3>AI booking and customer service agent <span class="badge">In progress</span></h3>
+          <p class="for">For restaurants and boutique hotels</p>
+          <p>Answers inbound web chat and completes bookings on its own when it is confident. When a request is ambiguous or high-stakes, it hands the decision to the owner.</p>
+          <ul>
+            <li>Agent runtime on AWS AgentCore with the Strands SDK</li>
+            <li>Tool execution on AWS Lambda</li>
+            <li>Supabase with pgvector for business-specific RAG</li>
+          </ul>
+          <p class="built">Built with Python, AWS and Supabase.</p>
+        </article>
+
+        <article class="project project-side">
+          <h3>Information retrieval engine</h3>
+          <p class="for">University project</p>
+          <p>A search engine built from scratch. It uses an inverted index with positional postings and ranks results with BM25, a TF-IDF vector space model and a field-weighted baseline. I evaluated all three with P@10 and MRR on the Project Gutenberg corpus.</p>
+          <p class="built">Built with Python.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <h2>Experience</h2>
+      <ol class="timeline">
+        <li>
+          <div class="when">Jan 2026 to Mar 2026</div>
+          <div class="what">
+            <h3>University of Denver</h3>
+            <p class="sub">History Department</p>
+            <ul>
+              <li>Built a custom MCP server to automate content ingestion into Strapi CMS, supporting bulk updates and cutting manual content-entry time for editorial teams.</li>
+              <li>Modernised the <em>Mapping the Nation</em> website with Astro.js, Vercel and Strapi.</li>
+              <li>Added AI-assisted development workflows to speed up frontend work and content generation.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="when">Dec 2024 to Jan 2026</div>
+          <div class="what">
+            <h3>Sapid-Serve</h3>
+            <ul>
+              <li>Built an AI food recommendation engine with GPT-4 and Azure Cosmos DB vector search, giving context-aware menu pairings based on dietary preferences.</li>
+              <li>Automated an AI menu digitisation pipeline with DeepSeek-VL and Azure OpenAI to extract, enrich and standardise menu records across restaurant clients.</li>
+              <li>Designed UI wireframes and interactive Figma prototypes for the mobile app.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="when">Nov 2023 to Nov 2024</div>
+          <div class="what">
+            <h3>Sillarai LLC</h3>
+            <ul>
+              <li>Built a RAG question-answering system for a fintech platform with Python, LlamaIndex and MongoDB, so users can query their transaction data in natural language.</li>
+              <li>Provisioned Azure App Service and SQL Database environments with automated CI/CD workflows.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="when">Sep 2021 to Nov 2023</div>
+          <div class="what">
+            <h3>CGI Inc.</h3>
+            <ul>
+              <li>Designed and optimised high-performance SQL ETL pipelines serving 100+ downstream applications in manufacturing and inventory.</li>
+              <li>Validated data flows between mainframe systems and Oracle MDM using reconciliation queries.</li>
+              <li>Worked with cross-functional teams to automate workflows and reduce manual effort.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section" id="skills">
+      <h2>Tech stack</h2>
+      <dl class="stack">
+        <dt>AI and agents</dt>
+        <dd>LLM orchestration, RAG, agents and tool use, MCP, LlamaIndex, Strands SDK, AWS AgentCore, Claude SDK, GPT-4, pgvector, FAISS</dd>
+        <dt>Languages and ML</dt>
+        <dd>Python, Java, R, PyTorch, scikit-learn, NumPy, pandas</dd>
+        <dt>Backend and data</dt>
+        <dd>FastAPI, Spring, PostgreSQL, MySQL, MongoDB, Supabase, SQL ETL</dd>
+        <dt>Cloud and delivery</dt>
+        <dd>AWS, Azure, Vercel, GitHub Actions, CI/CD</dd>
+        <dt>Frontend and design</dt>
+        <dd>Astro, Figma</dd>
+      </dl>
+    </section>
+
+    <section class="section" id="education">
+      <h2>Education and certifications</h2>
+      <ul class="quals">
+        <li>
+          <strong>M.Sc. Computing (AI)</strong>
+          <span>Dublin City University, 2025 to 2026, 2:1</span>
+        </li>
+        <li>
+          <strong>AWS Certified Machine Learning Engineer, Associate</strong>
+          <span>2026 to 2029</span>
+        </li>
+        <li>
+          <strong>AWS Certified AI Practitioner</strong>
+          <span>2026 to 2029</span>
+        </li>
+        <li>
+          <strong>B.E. Computer Science</strong>
+          <span>MNM Jain Engineering College, 2017 to 2021</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" id="contact">
+      <h2>Contact</h2>
+      <div>
+        <p class="contact-line">I&rsquo;m open to AI Engineer, LLM/Agent Engineer and Full-Stack AI roles, plus freelance projects.</p>
+        <a class="email" href="mailto:vishal188970@gmail.com">vishal188970@gmail.com</a>
+        <div class="actions">
+          <a class="btn btn-quiet" href="https://www.linkedin.com/in/vishalbalasubramanian">LinkedIn</a>
+          <a class="btn btn-quiet" href="https://github.com/VishalBalasubramanian-123">GitHub</a>
+        </div>
+        <p class="where">Based in Dublin, Ireland. Open to remote.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">&copy; 2026 Vishal Balasubramanian</footer>
+</div>
+
+<script>
+  (function () {
+    var form = document.getElementById('router');
+    if (!form) return;
+    var range = document.getElementById('threshold');
+    var rangeOut = document.getElementById('threshold-out');
+    var fill = document.getElementById('fill');
+    var marker = document.getElementById('marker');
+    var confText = document.getElementById('conf-text');
+    var thrText = document.getElementById('thr-text');
+    var result = document.getElementById('result');
+    var title = document.getElementById('result-title');
+    var detail = document.getElementById('result-detail');
+    var reason = document.getElementById('result-reason');
+
+    function update() {
+      var sel = form.querySelector('input[name="msg"]:checked');
+      var conf = Number(sel.dataset.conf);
+      var stakes = sel.dataset.stakes === 'true';
+      var t = Number(range.value);
+      var acts = !stakes && conf >= t;
+      var state = acts ? 'ok' : 'warn';
+
+      fill.style.width = conf + '%';
+      marker.style.left = t + '%';
+      fill.dataset.state = state;
+      result.dataset.state = state;
+      confText.textContent = conf + '%';
+      thrText.textContent = t + '%';
+      rangeOut.textContent = t + '%';
+
+      title.textContent = acts ? 'The agent handles it' : 'Sent to the owner';
+      detail.textContent = acts ? sel.dataset.act : 'Passes the full conversation to the owner.';
+      if (stakes) {
+        reason.textContent = 'Refunds are high-stakes, so they always go to the owner, whatever the confidence.';
+      } else if (acts) {
+        reason.textContent = 'Confidence is at or above the threshold, so the agent acts.';
+      } else {
+        reason.textContent = 'Confidence is below the threshold, so the agent asks the owner.';
+      }
+    }
+
+    form.addEventListener('change', update);
+    range.addEventListener('input', update);
+    update();
+  })();
+</script>
+</body>
+</html>
